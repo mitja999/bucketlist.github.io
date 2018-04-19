@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>Bucket list</h2>
+
+  <router-outlet></router-outlet>
+  <div class="clear container allBucketsContainer">
+    <div class="left">
+      <b>All buckets</b>
+    </div>
+
+    <div class="right" [hidden]="newBucketList">
+      <a [routerLink]="['./new']">
+        <button type="button" class="btn btn-primary">
+          Create new Bucket
+        </button>
+      </a>
+
+    </div>
+  </div>
+</div>
