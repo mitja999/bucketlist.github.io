@@ -1,9 +1,29 @@
 <div>
   <div class="clear container allBucketsContainer">
     <div class="left">
-      <b>All Files</b>
+      <b>All Files({{bucketbjects.length}})</b>
     </div>
-
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Last modified</th>
+          <th scope="col">Size</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let object of bucketbjects">
+          <td>{{object.name}}</td>
+          <td>{{object.last_modified| date: 'dd.MM.yyyy'}}</td>
+          <td>{{object.size | bytes }}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="deleteBucketObject(object.name)">Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
   </div>
 </div>

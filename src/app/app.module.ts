@@ -9,7 +9,12 @@ import { BucketListNewComponent } from './bucket-list/bucket-list-new/bucket-lis
 import { BucketItemComponent } from './bucket-item/bucket-item.component';
 import { BucketItemFilesComponent } from './bucket-item/bucket-item-files/bucket-item-files.component';
 import { BucketItemDetailsComponent } from './bucket-item/bucket-item-details/bucket-item-details.component';
-
+import { StorageApiService } from './shared/storage-api.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { CommonModule } from "@angular/common";
+import { StorageInterceptor } from './shared/storage.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgMathPipesModule } from 'angular-pipes';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,10 @@ import { BucketItemDetailsComponent } from './bucket-item/bucket-item-details/bu
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    CommonModule,
+    FormsModule,
+    NgMathPipesModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -31,22 +40,26 @@ import { BucketItemDetailsComponent } from './bucket-item/bucket-item-details/bu
       {
         path: 'bucketList',
         component: BucketListComponent,
-        children:[
-          {path:'new', component: BucketListNewComponent}
+        children: [
+          { path: 'new', component: BucketListNewComponent }
         ]
       },
       {
         path: 'bucketItem/:id',
         component: BucketItemComponent,
-        children:[
-          {path:'', redirectTo: 'files', pathMatch: 'full'},
-          {path:'files', component: BucketItemFilesComponent},
-          {path:'details', component: BucketItemDetailsComponent}
+        children: [
+          { path: '', redirectTo: 'files', pathMatch: 'full' },
+          { path: 'files', component: BucketItemFilesComponent },
+          { path: 'details', component: BucketItemDetailsComponent }
         ]
       }
     ])
   ],
-  providers: [],
+  providers: [StorageApiService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: StorageInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,26 +1,18 @@
 <div>
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Type</th>
-            <th scope="col">Column heading</th>
-            <th scope="col">Column heading</th>
-            <th scope="col">Column heading</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="table-active">
-            <th scope="row">Active</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
-          <tr>
-            <th scope="row">Default</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
-        </tbody>
-    </table>
+  <table class="table table-hover">
+    <tbody>
+      <tr>
+        <td class="fixWidth">Bucket name:</td>
+        <td>{{bucket.name}}</td>
+      </tr>
+      <tr>
+        <td class="fixWidth">Location:</td>
+        <td>{{bucket.location.name}}</td>
+      </tr>
+      <tr>
+        <td class="fixWidth">Storage size:</td>
+        <td>{{bucketSize | bytes}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

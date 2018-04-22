@@ -1,10 +1,10 @@
 <div class="container">
   <h2>Bucket list</h2>
 
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="newBucketList=true" (deactivate)="newBucketList=false"></router-outlet>
   <div class="clear container allBucketsContainer">
     <div class="left">
-      <b>All buckets</b>
+      <b>All buckets ({{buckets.length}})</b>
     </div>
 
     <div class="right" [hidden]="newBucketList">
@@ -13,7 +13,23 @@
           Create new Bucket
         </button>
       </a>
+    </div>
 
+    <div class="container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bucket of buckets" (click)="goToBucket(bucket.id)">
+            <td>{{bucket.name}}</td>
+            <td>{{bucket.location.name}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

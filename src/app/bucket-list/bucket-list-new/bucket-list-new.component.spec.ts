@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BucketListNewComponent } from './bucket-list-new.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BucketListNewComponent', () => {
   let component: BucketListNewComponent;
@@ -8,9 +9,12 @@ describe('BucketListNewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BucketListNewComponent ]
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [BucketListNewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +23,4 @@ describe('BucketListNewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

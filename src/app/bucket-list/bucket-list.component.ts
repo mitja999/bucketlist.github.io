@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavigationEnd  } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { StorageApiService } from '../shared/storage-api.service';
+import { Observable } from 'rxjs/Observable';
+import { Bucket, NewBucket } from './../shared/storage-api.model';
 
 @Component({
   selector: 'app-bucket-list',
@@ -9,19 +11,24 @@ import { NavigationEnd  } from '@angular/router';
 })
 export class BucketListComponent implements OnInit {
 
-  private newBucketList=false;
+  private newBucketList: boolean = false;
+  private buckets: Array<Bucket>;
 
-  constructor(private router: Router) {
-    
-    this.router.events.subscribe((event:NavigationEnd )=> {
-      if(event instanceof NavigationEnd ){
-        this.newBucketList=event.urlAfterRedirects.indexOf('new')!==-1;
-      }
-    });
-    
+  constructor(private router: Router, private _svc: StorageApiService) {
+    this.buckets = new Array<Bucket>();
   }
-   
+
   ngOnInit() {
+    this._svc.buckets().subscribe(b => {
+      this.buckets = b;
+    });
+
+    this._svc.newBucket.asObservable().subscribe(newBucket => {
+      this.buckets.push(newBucket);
+    });
   }
 
+  goToBucket(id) {
+    this.router.navigate(['bucketItem', id]);
+  }
 }

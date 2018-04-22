@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BucketListComponent } from './bucket-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('BucketListComponent', () => {
   let component: BucketListComponent;
@@ -8,9 +9,9 @@ describe('BucketListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BucketListComponent ]
+      declarations: [BucketListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,4 @@ describe('BucketListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
