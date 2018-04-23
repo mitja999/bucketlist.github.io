@@ -1,17 +1,17 @@
 # StorageApplication
 Build a simple object storage application using Angular 5.x with following requirements:
 
-create bucket with name and location
+-create bucket with name and location
 
-list all buckets
+-list all buckets
 
-delete a single bucket
+-delete a single bucket
 
-upload an object to a bucket
+-upload an object to a bucket
 
-list all objects in a bucket
+-list all objects in a bucket
 
-delete an object
+-delete an object
 
 ## Development server
 
